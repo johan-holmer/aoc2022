@@ -1,5 +1,6 @@
 def parse_input(path: str) -> list[str]:
-    return [line.strip() for line in open(path).readlines()]
+    with open(path) as f:
+        return [line.strip() for line in f.readlines()]
 
 
 def part1(input: list[str]) -> int:
