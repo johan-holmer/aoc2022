@@ -1,32 +1,43 @@
 def parse_input(path: str) -> list[str]:
+    o = []
     with open(path) as f:
-        return [line.strip() for line in f.readlines()]
+        for line in f:
+            o.append("".join([char.strip() for char in line.split(" ")]))
+    return o
 
 
 def part1(input: list[str]) -> int:
-    c = 0
-    for rucksack in input:
-        mid = len(rucksack) // 2
-        for char in rucksack[:mid]:
-            if char in rucksack[mid:]:
-                c += ord(char) - 96 if char.islower() else ord(char) - 38
-                break
-    return c
+    results = {
+        "AY": 8,
+        "AX": 4,
+        "AZ": 3,
+        "BY": 5,
+        "BX": 1,
+        "BZ": 9,
+        "CY": 2,
+        "CX": 7,
+        "CZ": 6,
+    }
+    return sum([results[round] for round in input])
 
 
-# Assuming that input is always multiple of 3
 def part2(input: list[str]) -> int:
-    c = 0
-    for idx in range(0, len(input), 3):
-        for char in input[idx]:
-            if char in input[idx + 1] and char in input[idx + 2]:
-                c += ord(char) - 96 if char.islower() else ord(char) - 38
-                break
-    return c
+    results = {
+        "AY": 4,
+        "AX": 3,
+        "AZ": 8,
+        "BY": 5,
+        "BX": 1,
+        "BZ": 9,
+        "CY": 6,
+        "CX": 2,
+        "CZ": 7,
+    }
+    return sum([results[round] for round in input])
 
 
-# inp = parse_input("input_ex.txt")
+inp = parse_input("input_ex.txt")
 inp = parse_input("input.txt")
-# print(inp)
+print(inp)
 print(part1(inp))
 print(part2(inp))
