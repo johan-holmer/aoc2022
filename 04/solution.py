@@ -21,7 +21,7 @@ def part1(input: None) -> int:
 def part2(input: None) -> int:
     c = 0
     for pair in input:
-        if any(el in pair[0] for el in pair[1]) or all(el in pair[1] for el in pair[0]):
+        if any(el in pair[0] for el in pair[1]):
             c += 1
     return c
 
